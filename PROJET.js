@@ -1,7 +1,8 @@
 const p = require("prompt-sync")()
 let choice;
 function menu (){
-     
+  
+console.log("============= les choix =============")
 console.log("1.Ajouter un nouveau candidat :")
 console.log("2. Ajouter plusieurs candidats à la fois.")
 console.log("3. Afficher la liste des candidats :")
@@ -11,17 +12,24 @@ console.log("6. Supprimer un candidat :")
 console.log("7. Rechercher des candidats :")
 console.log("8. Statistiques de l'élection :")
 console.log("0. Quitter :")
+console.log("======================================")
+
 } 
 
-  let candidats = []
-  let cin = p("CIN: ")
-    let nom = p("NOM: ")
-    let prenom = p(" PRENOM: ")
-    let age = p("AGE: ")
-    let partiPolitique = p("PARTIPOLITIQUE: ")
+    let candidats = []
+    let cin
+    let nom
+    let prenom
+    let age
+    let partiPolitique 
+    let partipolitiquev
 
 function ajouteruncandidat(){
-     
+     cin = p("CIN: ")
+     nom = p("NOM: ")
+     prenom = p(" PRENOM: ")
+     age = p("AGE: ")
+     partiPolitique = p("PARTIPOLITIQUE: ")
 
     let candidat ={
         cin : cin ,
@@ -38,12 +46,33 @@ function ajouteruncandidat(){
     
         function ajouter_plusieurs_candidats(){
             let answer = p("you want to add an candidat ? (yes/no)")
-            while(answer === "yes"){
+            do{
+                cin = p("CIN: ")
+                console.log("****")
+                nom = p("NOM: ")
+                 console.log("****")
+                prenom = p("PRENOM: ")
+                 console.log("****")
+                age = p("AGE: ")
+                 console.log("****")
+                partiPolitiquev = p("PARTIPOLITIQUE: ")
+        
+            let candidat ={
+        cin : cin ,
+        nom : nom ,
+        prenom : prenom , 
+        age : age ,
+        partiPolitique : partipolitiquev ,
+        Votes : []
+    };
+       candidats.push(candidat);
+       console.log("Candidat ajouté avec succès")
+
                 ajouteruncandidat()
                 answer = p("Do you want add an another candidat ? ")
-            }
+            }while(answer === "yes")}
 
-        }
+        
 
 
 
@@ -56,11 +85,13 @@ choice = Number(p("Enter youre choice"));
    switch(choice){
         
     case 1 : 
-        ajouteruncandidat()
+        ajouteruncandidat(
+
+        )
           break; 
 
     case 2 : 
-       (console.log("2"))
+        ajouter_plusieurs_candidats()
          break;
 
 
