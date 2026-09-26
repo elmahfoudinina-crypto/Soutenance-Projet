@@ -18,12 +18,14 @@ choice = Number(p("Enter youre choice"));
 
 
     case 3 : 
-     Afficher_laliste_descandidats()
+        menu2();
+            break;
+            
        
          
    
     case 4 : 
-        (console.log("4"))     
+        voter_sur_un_candidat()   
           break;
           
     case 5 : 
