@@ -13,7 +13,7 @@ choice = Number(p("Enter youre choice"));
           break; 
 
     case 2 : 
-        ajouter_plusieurs_candidats()
+         ajouter_Plus_Candidats()
          break;
 
 
@@ -90,5 +90,12 @@ function ajouteruncandidat(){
        console.log("Candidat ajouté avec succès") 
 
   }  
-  
- 
+     
+     function ajouter_Plus_Candidats(){
+    let reponse 
+    do{
+        ajouteruncandidat()
+        reponse = p("voulez-vous ajouter un autre candidat ? ")
+
+    }while(reponse === "oui" || reponse === "OUI")
+}

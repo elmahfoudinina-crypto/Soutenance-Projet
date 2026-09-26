@@ -62,7 +62,7 @@ function ajouteruncandidat(){
         prenom : prenom , 
         age : age ,
         partiePolitique : partiepolitiquev ,
-        Votes : []
+        L : []
     };
        candidats.push(candidat);
        console.log("Candidat ajouté avec succès")
