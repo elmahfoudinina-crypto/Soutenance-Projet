@@ -1,6 +1,6 @@
 const p = require("prompt-sync")()
 let choice;
-function menu (){
+/* function menu (){
   
 console.log("============= les choix =============")
 console.log("1.Ajouter un nouveau candidat :")
@@ -14,29 +14,28 @@ console.log("8. Statistiques de l'élection :")
 console.log("0. Quitter :")
 console.log("======================================")
 
-} 
+}  */
 
-    let candidats = []
+    
     let cin
     let nom
     let prenom
     let age
-    let partiPolitique 
-    let partipolitiquev
+    let partiepolitiquev
 
 function ajouteruncandidat(){
      cin = p("CIN: ")
      nom = p("NOM: ")
-     prenom = p(" PRENOM: ")
+     prenom = p("PRENOM: ")
      age = p("AGE: ")
-     partiPolitique = p("PARTIPOLITIQUE: ")
+     partiePolitiquev = p("PARTIEPOLITIQUE: ")
 
     let candidat ={
         cin : cin ,
         nom : nom ,
         prenom : prenom , 
         age : age ,
-        Partipolitique : partipolitique ,
+        Partiepolitique : partiepolitiquev ,
         Votes : []
     };
        candidats.push(candidat);
@@ -55,14 +54,14 @@ function ajouteruncandidat(){
                  console.log("****")
                 age = p("AGE: ")
                  console.log("****")
-                partiPolitiquev = p("PARTIPOLITIQUE: ")
+                partiePolitiquev = p("PARTIEPOLITIQUE: ")
         
             let candidat ={
         cin : cin ,
         nom : nom ,
         prenom : prenom , 
         age : age ,
-        partiPolitique : partipolitiquev ,
+        partiePolitique : partiepolitiquev ,
         Votes : []
     };
        candidats.push(candidat);
@@ -71,10 +70,83 @@ function ajouteruncandidat(){
                 ajouteruncandidat()
                 answer = p("Do you want add an another candidat ? ")
             }while(answer === "yes")}
+   
+         
+    function Affichage_des_candidats(candidat,index){
 
+             console.log("-candidat " + (index+1) + " : ");
+             console.log("CIN : " + candidat.cin);
+             console.log("NOM : " + candidat.nom);
+             console.log("PRENOM : " + candidat.prenom);
+             console.log("AGE : " + candidat.age);
+             console.log("Partiepolique : " + candidat.partiepolitique);
+             console.log("Nombre de votes  : " + candidat.Votes.length);
+             console.log("=================================="); 
+    } 
+    
+    function affichage_candidat_liste_simple(){
+        if(candidats.length === 0){
+            console.log("aucun candidat")
+            return;
+        }
+    }
         
 
+          for(let i = 0 ; i < candidats.length ; i++){
+            Affichage_des_candidats(candidats[i],i);
+          }
 
+
+    function affichage_par_trier(){
+       let Vote_candidat = []
+        for(let i = 0 ; i < candidats.length ; i++){
+            Vote_candidat[i] = candidats[i];
+        }
+
+        for(let i = 0 ; i < Vote_candidat.length ; i++)
+            for(let j = i+1 ; j < Vote_candidat.length ; j++){
+              if(Vote_candidat[j].Votes.length > Vote_candidat[i].Votes.length){
+                let temporaire = Vote_candidat[i];
+                Vote_candidat[i] = Vote_candidat[j];
+                Vote_candidat[j] = temporaire;
+              }
+            }     
+    }  
+        for(let i = 0 ; i < Vote_candidat.length ; i++){
+            Affichage_des_candidats(Vote_candidat[i], i);
+        } 
+    
+        
+    function affichage_par_PARTIPOLITIQUE(){
+        let PartiRechercher = p("ecrire le nom de la partiepolitique à rechercher")
+        let trouverlapartie = false;
+        for(let i = 0 ; i < candidats.length ; i++)
+             Affichage_des_candidats(candidats[i],i)
+            trouverlapartie = true ; 
+}
+        if(trouverlapartie === false){
+            console.log("aucune resultat a propos la partiepolitique")
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
 
 do{
@@ -85,9 +157,7 @@ choice = Number(p("Enter youre choice"));
    switch(choice){
         
     case 1 : 
-        ajouteruncandidat(
-
-        )
+        ajouteruncandidat()
           break; 
 
     case 2 : 
@@ -96,9 +166,17 @@ choice = Number(p("Enter youre choice"));
 
 
     case 3 :
-        (console.log("3"))
+        choice = Number(p("Enter youre choice"));
+   switch(choice){
+          case 1:
+       affichage_candidat_liste_simple()
+          case 2 :
+            
+        affichage_par_trier()
+          case 3 :
+        affichage_par_PARTIPOLITIQUE()
           break;
-
+   }
     case 4 : 
         (console.log("4"))     
           break;
