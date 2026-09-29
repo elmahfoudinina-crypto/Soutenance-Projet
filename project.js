@@ -5,15 +5,15 @@ let candidatS = [ {
     nOM : "khadija",
     pRENOM : "ola",
     aGE : 14,
-    pARTIEPOLITIQUE: "LES OLIVES",
+    pARTIEPOLITIQUE: "PAM",
     eLECTEURS :['r'],
 
 }, {
     cIN: "55555",
     nOM: "lala",
-    pRENOM: "khadija" ,
+    pRENOM: "NESMA" ,
     aGE: 22,
-    pARTIEPOLITIQUE: "LES OLIVES",
+    pARTIEPOLITIQUE: "PAM",
     eLECTEURS :[4, 44, 'e', 'a', 'M'],     
 
 }, {
@@ -21,7 +21,7 @@ let candidatS = [ {
     nOM: "kela",
     pRENOM: "mariam",
     aGE: 25,
-    pARTIEPOLITIQUE:"LES OLIVES",
+    pARTIEPOLITIQUE:"MODERNITE",
     eLECTEURS:['q', 's', 'x'] 
 
 }, {
@@ -29,7 +29,7 @@ let candidatS = [ {
     nOM: "lam",
     pRENOM: "Achraf",
     aGE: 20,
-    pARTIEPOLITIQUE:"Machi so9k",
+    pARTIEPOLITIQUE:"MODERNITE",
     eLECTEURS: ['ù', 'k', 'u']
 
 }]
@@ -38,7 +38,7 @@ do {
 
     menu();
 
-    choice = Number(p("Enter youre choice"));
+    choice = Number(p("Enter your choice"));
     switch (choice) {
 
         case 1:
@@ -71,13 +71,8 @@ do {
         case 6:
             suprimercandidat()
             break;
-
         case 7:
             chercher_un_candidat()
-            break;
-
-        case 8:
-            (console.log("8"))
             break;
 
     }
@@ -128,7 +123,7 @@ function Affichage_des_candidats(candidat, index) {
     console.log("PRENOM : " + candidat.pRENOM);
     console.log("AGE : " + candidat.aGE);
     console.log("Partiepolique : " + candidat.pARTIEPOLITIQUE);
-    console.log("Nombre de votes : " + candidat.eLECTEURS);
+    console.log("Nombre de votes : " + candidat.eLECTEURS.length);
     console.log("==================================");
 }
 function ajouter_Plus_Candidats() {
@@ -161,7 +156,7 @@ function affichage_par_tri() {
         for (let j = i + 1; j < vote_des_candidats.length; j++) {
 
             if (
-                vote_des_candidats[j].eLECTEURS.length <
+                vote_des_candidats[j].eLECTEURS.length >
                 vote_des_candidats[i].eLECTEURS.length
             ) {
                 let temp = vote_des_candidats[i];
@@ -277,14 +272,14 @@ function suprimercandidat(){
         return;
     }
     let cinsupr=p("saisir cin a suprimer: ")
-    let index=-1
+    let index = false;
     for(i=0;i<candidatS.length;i++){
-        if(candidatS[i].cIN===cinsupr){
-            index=i 
+        if(candidatS[i].cIN === cinsupr){
+            index = true ;
             break;
         }
     }
-    if(index===-1){
+    if(index === false){
         console.log("candidat introuvable")
     }
 
