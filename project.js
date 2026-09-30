@@ -69,7 +69,7 @@ do {
             modifiercandidat()
             break;
         case 6:
-            suprimercandidat()
+            supprimercandidat()
             break;
         case 7:
             chercher_un_candidat()
@@ -88,13 +88,18 @@ function menu() {
     console.log("5. Modifier les informations d'un candidat :")
     console.log("6. Supprimer un candidat :")
     console.log("7. Rechercher des candidats :")
-    console.log("8. Statistiques de l'élection :")
     console.log("0. Quitter :")
     console.log("*********************************************")
 
 }
 function ajouteruncandidat() {
     let Cin = p("CIN: ")
+    for(i=0;i<candidatS.length;i++){
+        if(candidatS[i].cIN=== Cin) {
+            console.log("deja ajoutée") 
+        return; 
+        }
+    }
     let Nom = p("NOM: ")
     let Prenom = p("PRENOM: ")
     let Age = p("AGE: ")
@@ -170,8 +175,8 @@ function affichage_par_tri() {
         Affichage_des_candidats(vote_des_candidats[i], i);
     }
 }
-function affichage_par_PARTIPOLITIQUE() {
-    let partirechercher = p("ecrire le nom de la politique convenable")
+function affichage_par_PARTIPOLITIQUE() { 
+    let partirechercher = p("ecrire le nom de la politique convenable: ")
     let trouverparti = false;
     for (let i = 0; i < candidatS.length; i++) {
         if (candidatS[i].pARTIEPOLITIQUE == partirechercher) {
@@ -180,7 +185,7 @@ function affichage_par_PARTIPOLITIQUE() {
         }
     }
     if (trouverparti === false) {
-        console.log("Aucun resultat trouver concernant cette partipolitique")
+        console.log("Aucune resultat trouver concernant cette partipolitique")
     }
 }
 function menu2() {
@@ -250,51 +255,39 @@ function modifiercandidat(){
         console.log("verification echoue: candidat introuvable")
         return;
     }
-    console.log("verification OK: "+ candidatS[index].pRENOM +""+candidatS[index].nOM)
+    console.log("verification OK: "+ candidatS[index].pRENOM +" "+candidatS[index].nOM)
     console.log("1-modifier la partie politique")
     console.log("2-modifier l'age")
     let choix = Number(p("que voulez vous modifier? "))
     if(choix===1){
-        let nvpartiepol=p("entrer nouvelle partiepolitique: ")
+        let nvpartiepol=p("entrer une nouvelle partiepolitique: ")
         candidatS[index].pARTIEPOLITIQUE =nvpartiepol
-        console.log("Partie politique modifie avec succee ") 
+        console.log("Partie politique modifiée avec succée ") 
     }else if(choix===2){
-        let nvage = Number(p("Enter le nouvel age : "))
+        let nvage = Number(p("Enter un nouveau age : "))
         candidatS[index].aGE = nvage
-        console.log("age modifie")
+        console.log("age modifié")
     }else{
         console.log("CHOIX FAUX!!!!!")
     }
 }
-function suprimercandidat(){
+function supprimercandidat(){
     if(candidatS.length===0){
         console.log("aucun condidat")
         return;
     }
-    let cinsupr=p("saisir cin a suprimer: ")
+    let cinsupri=p("saisir cin a supprimer: ")
     let index = false;
     for(i=0;i<candidatS.length;i++){
-        if(candidatS[i].cIN === cinsupr){
+        if(candidatS[i].cIN === cinsupri){
             index = true ;
+            candidatS.splice(i,1)
             break;
         }
     }
     if(index === false){
         console.log("candidat introuvable")
     }
-
-let nouveauTableau = [];
-
-for (let i = 0; i < candidatS.length; i++) {
-    if (i != index) {
-        nouveauTableau[nouveauTableau.length] = candidatS[i];
-    }
-}
-
-candidatS = nouveauTableau;
-
-console.log("vous avez supprimer ce candidat avec succée");
-
 }
 
 function chercher_un_candidat() {
@@ -308,7 +301,7 @@ function chercher_un_candidat() {
         }
     }
 
-    if (!trouve) {
+    if (trouve === false) {
         console.log("candidat introuvable");
     }
 }
